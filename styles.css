@@ -53,19 +53,19 @@ hr {
 
 #cactus {
   position: absolute;
-  bottom: -9px;
+  bottom: 0;
   left: 600px;
   width: 60px;
   height: 80px;
 
   background-image: url(src/cacti.png);
   background-size: cover;
-  animation: cacti 2s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
+  animation: cacti 2.5s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
 }
 
 @keyframes cacti {
     0% {
-        left : 590px;
+        left : 800px;
     }
 
     100% {
