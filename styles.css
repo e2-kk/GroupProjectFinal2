@@ -3,9 +3,11 @@ body {
 }
 
 .game-container {
+  width: 100%;
   max-width: 900px;
-  border: 1px solid red;
+ /*  border: 1px solid red; */
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 .game-container h1 {
@@ -40,11 +42,34 @@ hr {
 }
 
 .game-area {
-  width: 600px;
-  height: 200px;
-  margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  margin: 0 auto;
   border: 2px solid #ccc;
   background-color: #f0f0f0;
+}
+
+#cactus {
+  position: absolute;
+  bottom: 0;
+  left: 600px;
+  width: 60px;
+  height: 80px;
+
+  background-image: url(src/cacti.png);
+  background-size: cover;
+  animation: cacti 2.5s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
+}
+
+@keyframes cacti {
+    0% {
+        left : 800px;
+    }
+
+    100% {
+      left: -20px;
+    }
 }
 
 #dino{
