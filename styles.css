@@ -52,23 +52,20 @@ hr {
 }
 
 #cactus {
-  position: absolute;
-  bottom: -9px;
-  left: 600px;
-  width: 60px;
-  height: 80px;
-
-  background-image: url(src/cacti.png);
-  background-size: cover;
-  animation: cacti 2s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
-@keyframes cacti {
-    0% {
-        left : 850px;
-    }
 
-    100% {
-      left: -20px;
-    }
+.cactus-obstacles {
+  position: absolute;
+  bottom: 0;
+  left: 600px;
+  width: 60px;
+  height: 100px;
+  background-image: url('src/cacti.png');
+  background-size: cover;
+  background-position: bottom;
 }
