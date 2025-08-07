@@ -28,8 +28,8 @@ function moveObstacle(obstacle) {
     let position = window.innerWidth;
 
     const interval = setInterval(() => {
-        position -= 5;
-        obstacle.style.left = position;
+        position -= 5; /* increase px for faster steps  */
+        obstacle.style.left = position + "px";
 
         // Remove when off screen
         if (position < -60) {

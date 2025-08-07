@@ -3,9 +3,11 @@ body {
 }
 
 .game-container {
+  width: 100%;
   max-width: 900px;
-  border: 1px solid red;
+ /*  border: 1px solid red; */
   margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 .game-container h1 {
@@ -41,9 +43,10 @@ hr {
 
 .game-area {
   position: relative;
-  width: 600px;
-  height: 200px;
-  margin: 2rem auto;
+  width: 100%;
+  max-width: 1200px;
+  height: 400px;
+  margin: 0 auto;
   border: 2px solid #ccc;
   background-color: #f0f0f0;
 }
