@@ -73,5 +73,6 @@ let isCollison = setInterval(function () {
     alert(`Game Over! Your score ${gameScore}`);
   }else if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 220){
    gameScore = gameScore + 1;
+   document.getElementById("gameScore").innerHTML = gameScore;
   }
 }, 10)
