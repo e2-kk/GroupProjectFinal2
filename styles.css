@@ -40,10 +40,51 @@ hr {
 }
 
 .game-area {
-  position: relative;
   width: 600px;
   height: 200px;
   margin: 2rem auto;
   border: 2px solid #ccc;
   background-color: #f0f0f0;
+}
+
+#dino{
+  width:50px;
+  height:50px;
+  background-image: url(src/T-rextransparent.png);
+  background-size: 50px 50px;
+  position:relative;
+  top:150px;
+}
+
+.jump {
+  animation: jump 0.3s linear;
+}
+
+@keyframes jump {
+  0% {
+    top: 150px;
+  }
+  30% {
+    top: 130px;
+  }
+  50% {
+    top: 80px;
+  }
+  80% {
+    top: 130px;
+  }
+  100% {
+    top: 150px;
+  }
+}
+
+#cactus {
+  width:50px;
+  height:50px;
+  background-image: url(src/cactustransparent.png);
+  background-size: 20px 40px;
+  position:relative;
+  top:100px;
+  left:500px;
+
 }
