@@ -2,14 +2,6 @@ const cactusContainer = document.getElementById("cactus")
 let lastCactusTime = 0;
 const cactusInterval = 5000;
 
-/* function moveCactus() {
-    cactusPosition -= 5;
-    if (cactusPosition < - 20) cactusPosition = 600;
-    cactus.style.left = cactusPosition + "px";
-}
-
-setInterval(moveCactus, 50) */
-
 function createObstacle() {
     const obstacle = document.createElement("div");
     obstacle.classList.add("cactus-obstacles");
@@ -27,7 +19,7 @@ function moveObstacle(obstacle) {
     let position = window.innerWidth;
 
     const interval = setInterval(() => {
-        position -= 5;
+        position -= 5; /* increase px for faster steps  */
         obstacle.style.left = position + "px";
 
         // Remove when off screen
@@ -37,7 +29,7 @@ function moveObstacle(obstacle) {
         }
 
 
-    }, 50);
+    }, 50); /* or increase here to update more often */
 }
 
 function startObstacleLoop() {
