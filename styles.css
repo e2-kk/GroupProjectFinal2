@@ -47,3 +47,25 @@ hr {
   border: 2px solid #ccc;
   background-color: #f0f0f0;
 }
+
+#cactus {
+  position: absolute;
+  bottom: -9px;
+  left: 600px;
+  width: 60px;
+  height: 80px;
+
+  background-image: url(src/cacti.png);
+  background-size: cover;
+  animation: cacti 2s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
+}
+
+@keyframes cacti {
+    0% {
+        left : 590px;
+    }
+
+    100% {
+      left: -20px;
+    }
+}
