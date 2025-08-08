@@ -17,7 +17,7 @@ function jump() {
      setTimeout(()  => {
         dino.classList.remove("jump");
         jumping = false;
-    }, 300)
+    }, 1500)
 }
 
 document.addEventListener("keydown", function (e) {
@@ -52,7 +52,7 @@ function moveObstacle(obstacle) {
             return;
         }
 
-        position -= 5; /* increase px for faster steps  */
+        position -= 15; /* increase px for faster steps  */
         obstacle.style.left = position + "px";
 
         // Remove when off screen
