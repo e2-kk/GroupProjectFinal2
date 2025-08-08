@@ -85,7 +85,7 @@ document.getElementById("gameScore").innerHTML = gameScore;
 setInterval(() => {
     if (gameOver) return;
 
-    const dinoReact = dino.getBoundingClientRect();
+    const dinoRect = dino.getBoundingClientRect();
 
 
 
