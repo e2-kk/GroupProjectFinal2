@@ -33,7 +33,7 @@ function createObstacle() {
     obstacle.classList.add("cactus-obstacles");
 
     //Random height
-    const height = Math.floor(Math.random() * 30) + 50;
+    const height = Math.floor(Math.random() * 20) + 40;
     obstacle.style.height = height + "px";
     obstacle.style.left = "100%";
     obstacle.dataset.scored = "false";
@@ -86,11 +86,6 @@ setInterval(() => {
     if (gameOver) return;
 
     const dinoRect = dino.getBoundingClientRect();
-
-
-
-   /*  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
- */
 
 // get all current obstacles
 const obstacles = document.querySelectorAll(".cactus-obstacles");
