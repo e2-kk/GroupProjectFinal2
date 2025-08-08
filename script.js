@@ -1,11 +1,11 @@
 const dino = document.getElementById("dino");
 const cactusContainer = document.getElementById("cactus");
-
+let speedMultiplier = 1; // Speed of cactus at start
+let startTime = Date.now(); //timing
 let lastCactusTime = 0;
-const cactusInterval = 5000;
+const cactusInterval = 500;
 let gameScore = 0;
 let gameOver = false;
-
 
 // Handle jump
 let jumping = false;
@@ -25,6 +25,37 @@ document.addEventListener("keydown", function (e) {
     jump();
   }
 });
+
+let isJumping = false;
+let velocity = 0;
+const gravity = 0.2;
+let dinoBottom = 0;
+const jumpStrength = 8;
+
+function jump() {
+  if (isJumping) return;
+
+  isJumping = true;
+  velocity = jumpStrength;
+}
+
+function updateDino() {
+  if (isJumping) {
+    velocity -= gravity;
+    dinoBottom += velocity;
+
+    if (dinoBottom <= 0) {
+      dinoBottom = 0;
+      isJumping = false;
+    }
+
+    dino.style.bottom = dinoBottom + "px";
+  }
+
+  requestAnimationFrame(updateDino);
+}
+
+updateDino();
 
 // Obstacle creation
 
@@ -52,16 +83,28 @@ function moveObstacle(obstacle) {
             return;
         }
 
-        position -= 15; /* increase px for faster steps  */
+        // Increase position decrement by multiplier
+        position -= 20 * speedMultiplier;
         obstacle.style.left = position + "px";
 
-        // Remove when off screen
-        if (position < -60) {
+        if (position < -100) {
             obstacle.remove();
-            clearInterval(interval)
+            clearInterval(interval);
         }
     }, 50);
 }
+
+function increaseSpeedOverTime() {
+    setInterval(() => {
+        if (gameOver) return;
+
+        // Increase speed multiplier slightly over time
+        speedMultiplier += 0.15;
+        if (speedMultiplier > 3) speedMultiplier = 3;
+    }, 2000); 
+}
+
+increaseSpeedOverTime();
 
 // Start cactus loop
 
@@ -82,6 +125,7 @@ startObstacleLoop();
 // collision + score 
 document.getElementById("gameScore").innerHTML = gameScore;
 
+
 setInterval(() => {
     if (gameOver) return;
 
@@ -100,7 +144,16 @@ obstacles.forEach(obstacle => {
     ) {
    gameOver = true;
       alert(`Game over! Your score: ${gameScore}`);
+      input =window.prompt(`Would you like to try again? Type yes if so.`);
+      if (input === null || input === 'no' || input === 'No' || input === "NO")
+      window.alert('Thank you for playing :)');
+      else if (input === 'Yes' || input === 'yes' || input ==='YES')
       window.location.reload();
+      else {
+        window.alert('Please answer yes or no.');
+      } 
+      
+  
     } else if (obstacle.dataset.scored === "false" && obstacleRect.right < dinoRect.left) {
       // Dino jumped over it successfully
       gameScore++;
@@ -109,3 +162,5 @@ obstacles.forEach(obstacle => {
     }
   });
 }, 20);
+
+
