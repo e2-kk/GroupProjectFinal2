@@ -1,15 +1,22 @@
-HEAD
-const character = document.getElementById("T-rex");
-const obstacle = document.getElementById("cactus");
+const dino = document.getElementById("dino");
+const cactusContainer = document.getElementById("cactus");
 
+let lastCactusTime = 0;
+const cactusInterval = 5000;
+let gameScore = 0;
+let gameOver = false;
+
+
+// Handle jump
 let jumping = false;
 
 function jump() {
-    dino.classList.add("jump")
     if (jumping) return;
-    jumping - true;
-     setTimeout(function () {
+    jumping = true;
+    dino.classList.add("jump")
+     setTimeout(()  => {
         dino.classList.remove("jump");
+        jumping = false;
     }, 300)
 }
 
@@ -18,18 +25,8 @@ document.addEventListener("keydown", function (e) {
     jump();
   }
 });
-const cactusContainer = document.getElementById("cactus");
-const dino = document.getElementById("T-rex");
-let lastCactusTime = 0;
-const cactusInterval = 5000;
 
-/* function moveCactus() {
-    cactusPosition -= 5;
-    if (cactusPosition < - 20) cactusPosition = 600;
-    cactus.style.left = cactusPosition + "px";
-}
-
-setInterval(moveCactus, 50) */
+// Obstacle creation
 
 function createObstacle() {
     const obstacle = document.createElement("div");
@@ -39,6 +36,7 @@ function createObstacle() {
     const height = Math.floor(Math.random() * 30) + 50;
     obstacle.style.height = height + "px";
     obstacle.style.left = "100%";
+    obstacle.dataset.scored = "false";
 
     cactusContainer.appendChild(obstacle);
     moveObstacle(obstacle);
@@ -48,6 +46,12 @@ function moveObstacle(obstacle) {
     let position = window.innerWidth;
 
     const interval = setInterval(() => {
+        if (gameOver) {
+            clearInterval(interval);
+            obstacle.remove();
+            return;
+        }
+
         position -= 5; /* increase px for faster steps  */
         obstacle.style.left = position + "px";
 
@@ -56,10 +60,10 @@ function moveObstacle(obstacle) {
             obstacle.remove();
             clearInterval(interval)
         }
-
-
     }, 50);
 }
+
+// Start cactus loop
 
 function startObstacleLoop() {
     setInterval(() => {
@@ -75,25 +79,38 @@ function startObstacleLoop() {
 
 startObstacleLoop();
 
-//Check collision 
-let gameScore = 0;
+// collision + score 
 document.getElementById("gameScore").innerHTML = gameScore;
-let isCollison = setInterval(function () {
-  //check dino position
-  let dinoTop = window.getComputedStyle(dino).getPropertyValue("top");
-  
-  //check cactus position
-  let cactusLeft = parseInt(window.getComputedStyle(cactusContainer).getPropertyValue("left"));
-  console.log(cactusLeft);
 
-  //detect collision 
+setInterval(() => {
+    if (gameOver) return;
 
-  if ( cactusLeft < 50 && cactusLeft > 0 && dinoTop > 210 && dinoTop < 220){
-    //display score
-    alert(`Game Over! Your score ${gameScore}`);
-  }else if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 220){
-   gameScore = gameScore + 1;
-   document.getElementById("gameScore").innerHTML = gameScore;
-  }
-}, 10)
+    const dinoReact = dino.getBoundingClientRect();
 
+
+
+   /*  let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
+ */
+
+// get all current obstacles
+const obstacles = document.querySelectorAll(".cactus-obstacles");
+obstacles.forEach(obstacle => {
+    const obstacleReact = obstacle.getBoundingClientRect();
+
+    if (
+      dinoRect.left < obstacleRect.right &&
+      dinoRect.right > obstacleRect.left &&
+      dinoRect.bottom > obstacleRect.top &&
+      dinoRect.top < obstacleRect.bottom
+    ) {
+   gameOver = true;
+      alert(`Game over! Your score: ${gameScore}`);
+      window.location.reload();
+    } else if (obstacle.dataset.scored === "false" && obstacleRect.right < dinoRect.left) {
+      // Dino jumped over it successfully
+      gameScore++;
+      document.getElementById("gameScore").innerHTML = gameScore;
+      obstacle.dataset.scored = "true";
+    }
+  });
+}, 20);

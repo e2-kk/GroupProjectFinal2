@@ -5,7 +5,6 @@ body {
 .game-container {
   width: 100%;
   max-width: 900px;
- /*  border: 1px solid red; */
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -48,37 +47,18 @@ hr {
   margin: 0 auto;
   border: 2px solid #ccc;
   background-color: #f0f0f0;
+  position: relative;
+  border-bottom: 4px solid #999;
 }
 
-#cactus {
-  position: absolute;
-  bottom: 0;
-  left: 600px;
-  width: 60px;
-  height: 80px;
-
-  background-image: url(src/cacti.png);
-  background-size: cover;
-  animation: cacti 2.5s linear infinite; /* you can change to 1 sec but it was hurting my eyes haha */
-}
-
-@keyframes cacti {
-    0% {
-        left : 800px;
-    }
-
-    100% {
-      left: -20px;
-    }
-}
 
 #dino{
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
   background-image: url(src/T-rextransparent.png);
-  background-size: 50px 50px;
-  position:relative;
-  top:150px;
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
 }
 
 .jump {
@@ -86,24 +66,31 @@ hr {
 }
 
 @keyframes jump {
-  0% {
-    top: 150px;
-  }
-  30% {
-    top: 130px;
-  }
-  50% {
-    top: 80px;
-  }
-  80% {
-    top: 130px;
-  }
-  100% {
-    top: 150px;
-  }
+    0% { bottom: 0; }
+    50% { bottom: 100px; }
+    100% { bottom: 0; }
 }
 
 #cactus {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cactus-obstacles {
+  position: absolute;
+  bottom: 0;    
+  left: 600px;
+  width: 60px;
+  height: 100px;
+  background-image: url('src/cacti.png');
+  background-size: cover;
+  background-position: bottom;
+}
+
+
+/* #cactus {
   width:50px;
   height:50px;
   background-image: url(src/cactustransparent.png);
@@ -112,4 +99,4 @@ hr {
   top:100px;
   left:500px;
 
-}
+} */
