@@ -95,7 +95,7 @@ setInterval(() => {
 // get all current obstacles
 const obstacles = document.querySelectorAll(".cactus-obstacles");
 obstacles.forEach(obstacle => {
-    const obstacleReact = obstacle.getBoundingClientRect();
+    const obstacleRect = obstacle.getBoundingClientRect();
 
     if (
       dinoRect.left < obstacleRect.right &&
