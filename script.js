@@ -100,7 +100,7 @@ function increaseSpeedOverTime() {
 
         // Increase speed multiplier slightly over time
         speedMultiplier += 0.15;
-        if (speedMultiplier > 3) speedMultiplier = 3;
+        if (speedMultiplier > 4) speedMultiplier = 4;
     }, 2000); 
 }
 
@@ -117,7 +117,7 @@ function startObstacleLoop() {
             createObstacle();
             lastCactusTime = now
         }
-    }, 500); 
+    }, 200); 
 }
 
 startObstacleLoop();
@@ -146,7 +146,7 @@ obstacles.forEach(obstacle => {
       alert(`Game over! Your score: ${gameScore}`);
       input =window.prompt(`Would you like to try again? Type yes if so.`);
       if (input === null || input === 'no' || input === 'No' || input === "NO")
-      window.alert('Thank you for playing :)');
+      window.alert('Thank you for playing :). Please press "F5" if you would like to play again.');
       else if (input === 'Yes' || input === 'yes' || input ==='YES')
       window.location.reload();
       else {
